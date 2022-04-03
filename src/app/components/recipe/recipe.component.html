@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Externt API</h1>
+
+  <div class="row">
+  <div class="col-sm-4" *ngFor="let recipe of recipes">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.title }}</h5>
+        <p class="card-text">{{ recipe.summary }}</p>
+        <a
+          [routerLink]="['/recipe-detail/', recipe.id]"
+          class="btn btn-danger"
+          >Check recipe</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+</div>
