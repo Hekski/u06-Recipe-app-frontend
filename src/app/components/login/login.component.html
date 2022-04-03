@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center">
+  <aside class="col-sm-4 mt-5">
+    <div class="card">
+      <article class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title mb-4 mt-1">Log in</h4>
+          <a
+            class="btn btn-outline-primary h-100"
+            routerLinkActive="active"
+            routerLink="/register"
+            >Register</a
+          >
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+          <div class="form-group text-start">
+            <label>Your email</label>
+            <input formControlName="email" class="form-control" type="email" />
+          </div>
+          <!-- form-group// -->
+          <div class="form-group text-start mt-3">
+            <label>Your password</label>
+            <input
+              formControlName="password"
+              class="form-control"
+              type="password"
+              placeholder=""
+            />
+          </div>
+          <!-- form-group// -->
+          <div class="form-group text-start">
+            <div class="checkbox">
+              <label> <input type="checkbox" /> Save password </label>
+            </div>
+            <!-- checkbox .// -->
+          </div>
+          <!-- form-group// -->
+          <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary btn-block w-100">
+              Login
+            </button>
+            
+          </div>
+        </form>
+      </article>
+    </div>
+  </aside>
+</div>
