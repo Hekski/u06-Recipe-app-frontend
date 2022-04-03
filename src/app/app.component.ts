@@ -1,10 +1,23 @@
 import { Component } from '@angular/core';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'frontend_';
+  title = 'frontend';
+  isLoggedIn!: boolean;
+
+  constructor(private loginService: LoginService) {}
+  ngOnInit() {
+    this.isLoggedIn = this.loginService.isUserLoggedIn();
+    console.log('hej' + this.isLoggedIn);
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('name');
+  }
 }
