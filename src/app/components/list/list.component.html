@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Saved lists</h1>
+   
+    <a href="#" routerLink="/list/create/" class="btn btn-success">Create New List</a>
+     
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th width="220px">Action</th>
+      </tr>
+      <tr *ngFor="let list of lists">
+        <td>{{ list.id }}</td>
+        <td>{{ list.title }}</td>
+        <td>{{ list.image }}</td>
+        <td>
+          <!-- Lägg till list route -->
+            <a href="#" [routerLink]="['/list/', list.id, 'view']" class="btn btn-info">View</a>
+            <a href="#" [routerLink]="['/list/', list.id, 'edit']" class="btn btn-primary">Edit</a>
+       <button type="button" (click)="deleteList(list.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+ </div>
