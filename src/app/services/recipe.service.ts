@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Recipe } from '../interface/recipe';
 
@@ -19,9 +19,9 @@ export class RecipeService {
     }),
   };
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
     this.apiURL = 'https://api.spoonacular.com/recipes/';
-    this.apiKey = 'apiKey=ad0ac2008bb24abe936fe73042e3e82f';
+    this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
   }
   deafultParams = new HttpParams()
     // .append('query', 'foodista')
@@ -30,7 +30,7 @@ export class RecipeService {
     .append('apiKey', 'ad0ac2008bb24abe936fe73042e3e82f');
 
   getAll(): Observable<Recipe[]> {
-    return this.httpClient
+    return this.http
       .get<Recipe[]>(this.apiURL + 'complexSearch', {
         params: this.deafultParams,
         /*         {
@@ -47,8 +47,14 @@ export class RecipeService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getOneRecipe(id: number | string): Observable<Recipe> {
+    return this.http.get<Recipe>(this.apiURL + id + '/information', {
+      params: new HttpParams().append('apiKey', this.apiKey),
+    });
+  }
+
   create(recipe: string | number): Observable<Recipe> {
-    return this.httpClient
+    return this.http
       .post<Recipe>(
         this.apiURL + '/recipes/',
         JSON.stringify(recipe),
@@ -57,14 +63,8 @@ export class RecipeService {
       .pipe(catchError(this.errorHandler));
   }
 
-  find(id: string | number): Observable<Recipe> {
-    return this.httpClient
-      .get<Recipe>(this.apiURL + '/recipes/' + id)
-      .pipe(catchError(this.errorHandler));
-  }
-
   update(id: string | number, recipe: any): Observable<Recipe> {
-    return this.httpClient
+    return this.http
       .put<Recipe>(
         this.apiURL + '/recipes/' + id,
         JSON.stringify(recipe),
@@ -74,7 +74,7 @@ export class RecipeService {
   }
 
   delete(id: number) {
-    return this.httpClient
+    return this.http
       .delete<Recipe>(this.apiURL + '/recipes/' + id, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
