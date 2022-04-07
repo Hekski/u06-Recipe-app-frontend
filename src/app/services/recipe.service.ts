@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { Observable, pipe, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Recipe } from '../interface/recipe';
-
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +11,13 @@ import { Recipe } from '../interface/recipe';
 export class RecipeService {
   private apiURL: string;
   private apiKey: string;
+  category!: string;
+  filterValue: string;
+
+  constructor(private http: HttpClient) {
+    this.apiURL = 'https://api.spoonacular.com/recipes/';
+    this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,68 +25,50 @@ export class RecipeService {
     }),
   };
 
-  constructor(private http: HttpClient) {
-    this.apiURL = 'https://api.spoonacular.com/recipes/';
-    this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
-  }
   deafultParams = new HttpParams()
-    // .append('query', 'foodista')
-    .append('number', '20')
-    .append('dishtype', 'dinner')
+    .append('number', '10')
     .append('apiKey', 'ad0ac2008bb24abe936fe73042e3e82f');
+
+  recipeId$ = new BehaviorSubject<number>(0);
+  selectedRecipe$ = this.recipeId$.asObservable();
 
   getAll(): Observable<Recipe[]> {
     return this.http
       .get<Recipe[]>(this.apiURL + 'complexSearch', {
         params: this.deafultParams,
-        /*         {
-          .append('type', dishType)
-          .append('diet', `vegetarian,${preferences}`)
-          .append('apiKey', this.spoonApiKey),
- 
-
-        /* 'apiKey=ad0ac2008bb24abe936fe73042e3e82f' +
-          '&type=lunch' +
-          '&title=true' +
-          '&number=10' */
       })
       .pipe(catchError(this.errorHandler));
   }
 
+  getTypes(type: any, filter: string[]) {
+
+    let filterParams = this.deafultParams;
+
+    if (filter.includes('glutenFree')) {
+      filterParams = filterParams.append('diet', 'glutenFree');
+    }
+    if (filter.includes('vegetarian')) {
+      filterParams = filterParams.append('diet', 'vegetarian');
+    }
+    if (filter.includes('dairyFree')) {
+      filterParams = filterParams.append('intolerance', 'dairy');
+    }
+
+    // else return this.filerValue = "";
+    return this.http.get<Recipe[]>(this.apiURL + 'complexSearch', {
+      params: filterParams.append('type', `${type}`),
+    });
+  }
+
+  // This runs from recipe-detail.ts
   getOneRecipe(id: number | string): Observable<Recipe> {
     return this.http.get<Recipe>(this.apiURL + id + '/information', {
       params: new HttpParams().append('apiKey', this.apiKey),
     });
   }
 
-  create(recipe: string | number): Observable<Recipe> {
-    return this.http
-      .post<Recipe>(
-        this.apiURL + '/recipes/',
-        JSON.stringify(recipe),
-        this.httpOptions
-      )
-      .pipe(catchError(this.errorHandler));
-  }
-
-  update(id: string | number, recipe: any): Observable<Recipe> {
-    return this.http
-      .put<Recipe>(
-        this.apiURL + '/recipes/' + id,
-        JSON.stringify(recipe),
-        this.httpOptions
-      )
-      .pipe(catchError(this.errorHandler));
-  }
-
-  delete(id: number) {
-    return this.http
-      .delete<Recipe>(this.apiURL + '/recipes/' + id, this.httpOptions)
-      .pipe(catchError(this.errorHandler));
-  }
-
   errorHandler(error: any) {
-    let errorMessage = 'JÄTTEFEL';
+    let errorMessage = '404 JÄTTEFEL';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {

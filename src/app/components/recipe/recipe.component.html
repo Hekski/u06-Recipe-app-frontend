@@ -1,19 +1,77 @@
 <div class="container">
-  <h1>Externt API</h1>
-
-  <div class="row">
-  <div class="col-sm-4" *ngFor="let recipe of recipes">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.title }}</h5>
-        <p class="card-text">{{ recipe.summary }}</p>
-        <a
-          [routerLink]="['/recipe-detail/', recipe.id]"
-          class="btn btn-danger"
-          >Check recipe</a
-        >
+  <h1 class="text-start mb-5">Externt API <small>{{category}}</small></h1>
+  
+  <div>
+    <ul class="nav nav-pills mb-1 mt-1">
+      <li class="nav-item mb-2">
+        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" value="breakfast" (click)="getCategory($event)" name="breakfast"> Breakfast</button>
+      </li>
+      <li class="nav-item mb-2">
+        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" value="main" (click)="getCategory($event)" name="main">Main Dishes</button>
+      </li>
+      <li class="nav-item mb-2">
+        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="drink">Drinks</button>
+      </li>
+      <li class="nav-item mb-2">
+        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="appetizer">Appetizers</button>
+      </li>
+      <li class="nav-item mb-2">
+        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="dessert">Desserts</button>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex justify-content-between">
+    <ul class="nav nav-pills mb-3 mt-1 ms-3">
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="glutenFree" (change)="getPreference($event)" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Gluten Free
+        </label>
+      </div>
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="vegetarian" (change)="getPreference($event)" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Vegetarian
+        </label>
+      </div>
+      <div class="form-check ms-3">
+        <input class="form-check-input" type="checkbox" name="dairyFree" (change)="getPreference($event)" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Dairy Free
+        </label>
+      </div>
+    </ul>
+    
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Antal
+      </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">10</a>
+          <a class="dropdown-item" href="#">20</a>
+          <a class="dropdown-item" href="#">30</a>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let recipe of recipes">
+      <div class="card mb-3">
+        <img
+          class="card-img-top"
+          src="{{ recipe.image }}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><small>{{ recipe.title }}</small></h5>
+          <p class="card-text"></p>
+          <a
+            [routerLink]="['/recipe-detail/', recipe.id]"
+            class="btn btn-danger"
+            >Check recipe</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

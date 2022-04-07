@@ -17,19 +17,19 @@ export interface Recipe {
   dishTypes: string[];
   diets?: string[];
   instructions: string;
-  ingredientString: string[];
-  
+  pricePerServing: number;
 }
 
 export interface ExtendedIngredient {
   id: number;
   aisle?: string;
   image: string;
-  name: string; 
-  nameClean: string; 
-  original: string; 
+  name: string;
+  nameClean: string;
+  original: string;
   amount: number;
-  unit: string; 
+  unit: string;
+  totalCostPerServing: number;
 }
 
 export interface AnalyzedInstruction {
