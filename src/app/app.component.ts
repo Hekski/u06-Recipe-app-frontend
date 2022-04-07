@@ -7,7 +7,7 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Recipe Test App';
   isLoggedIn!: boolean;
 
   constructor(private loginService: LoginService) {}

@@ -8,6 +8,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { NoPageFoundComponent } from './components/no-page-found/no-page-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'list', component: ListComponent },
   { path: 'recipe', component: RecipeComponent },
+  { path: 'recipe-detail/:id', component: RecipeDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   // { path: '/recipe/create/', component: RecipeComponent }, //Create new list button
