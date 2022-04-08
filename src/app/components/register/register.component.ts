@@ -15,14 +15,22 @@ export class RegisterComponent implements OnInit {
     private http: HttpClient,
     private router: Router
   ) {}
+  name: string = '';
   email: string = '';
   password: string = '';
+  confirm_password: string = '';
+  alert: string = '';
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl([
+        '',
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      confirm_password: new FormControl([
         '',
         Validators.required,
         Validators.minLength(5),
@@ -40,6 +48,7 @@ export class RegisterComponent implements OnInit {
       localStorage.setItem('token', result.token);
       localStorage.setItem('id', result.id);
       localStorage.setItem('name', result.name);
+      alert(result.message);
       this.router.navigate(['/login']);
     });
   }

@@ -10,10 +10,11 @@ export class RegisterService {
   name: string = '';
   email: string = '';
   password: string = '';
-  spoonApiUrl: string = 'http://localhost:8000/api/login';
+  confirm_password: string = '';
+  LaravelApiUrl: string = 'http://localhost:8000/api/register';
   constructor(private http: HttpClient) {}
 
   register(formData: object): Observable<any> {
-    return this.http.post(`${this.spoonApiUrl}`, formData);
+    return this.http.post(`${this.LaravelApiUrl}`, formData);
   }
 }
