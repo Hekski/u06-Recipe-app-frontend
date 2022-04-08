@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   ) {}
   email: string = '';
   password: string = '';
+  alert: string = '';
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', result.token);
       localStorage.setItem('id', result.id);
       localStorage.setItem('name', result.name);
-      this.router.navigate(['/home']);
+      alert(result.message);
+      this.router.navigate(['/list']);
     });
   }
 }

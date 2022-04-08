@@ -11,11 +11,11 @@ export class LoginService {
 
   email: string = '';
   password: string = '';
-  spoonApiUrl: string = 'http://localhost:8000/api/login';
+  LaravelApiUrl: string = 'http://localhost:8000/api/login';
   constructor(private http: HttpClient) {}
 
   login(formData: object): Observable<any> {
-    return this.http.post(`${this.spoonApiUrl}`, formData);
+    return this.http.post(`${this.LaravelApiUrl}`, formData);
   }
 
   isUserLoggedIn(): boolean {
