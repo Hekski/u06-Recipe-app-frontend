@@ -45,13 +45,13 @@ export class RecipeService {
     let filterParams = this.deafultParams;
 
     if (filter.includes('glutenFree')) {
-      filterParams = filterParams.append('diet', 'glutenFree');
+      filterParams = filterParams.append('diet', 'gluten Free');
     }
     if (filter.includes('vegetarian')) {
       filterParams = filterParams.append('diet', 'vegetarian');
     }
     if (filter.includes('dairyFree')) {
-      filterParams = filterParams.append('intolerance', 'dairy');
+      filterParams = filterParams.append('intolerances', 'Dairy');
     }
 
     // else return this.filerValue = "";
