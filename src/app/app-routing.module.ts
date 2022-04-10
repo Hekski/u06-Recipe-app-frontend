@@ -9,12 +9,14 @@ import { NoPageFoundComponent } from './components/no-page-found/no-page-found.c
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { ListDetailComponent } from './components/list-detail/list-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'list', component: ListComponent },
+  { path: 'list-detail/:id', component: ListDetailComponent },
   { path: 'recipe', component: RecipeComponent },
   { path: 'recipe-detail/:id', component: RecipeDetailComponent },
   { path: 'login', component: LoginComponent },
