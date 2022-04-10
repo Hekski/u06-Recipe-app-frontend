@@ -1,25 +1,26 @@
-<div class="container">
-    <h1>Saved lists</h1>
-   
-    <a href="#" routerLink="/list/create/" class="btn btn-success">Create New List</a>
-     
-    <table class="table table-bordered">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Image</th>
-        <th width="220px">Action</th>
-      </tr>
-      <tr *ngFor="let list of lists">
-        <td>{{ list.id }}</td>
-        <td>{{ list.title }}</td>
-        <td>{{ list.image }}</td>
-        <td>
-          <!-- Lägg till list route -->
-            <a href="#" [routerLink]="['/list/', list.id, 'view']" class="btn btn-info">View</a>
-            <a href="#" [routerLink]="['/list/', list.id, 'edit']" class="btn btn-primary">Edit</a>
-       <button type="button" (click)="deleteList(list.id)" class="btn btn-danger">Delete</button>
-        </td>
-      </tr>
-    </table>
- </div>
+<div class="container text-start">
+  <h1>Saved lists of recipes</h1>
+
+  <form>
+    <div class="form-group text-start">
+      <label>Create your recipe list</label>
+      <input id="listForm" class="form-control mb-2" type="text" />
+
+      <button (click)="createList()" class="btn btn-info me-2 mb-5" formtarget="_blank">
+        Create New List
+      </button>
+
+    </div>
+  </form>
+
+  <label class="mb-2">Your saved lists</label>
+  <div class="list-items d-flex flex-row align-items-center" *ngFor="let list of lists">
+
+    <button (click)="deleteList(list.id)" class="btn btn-danger mb-2 me-2"
+      >Delete List</button
+    >
+    <span><h5><a [routerLink]="['/list-detail/', list.id]">{{ list.title }} </a></h5></span>
+    <p></p>
+  </div>
+
+</div>

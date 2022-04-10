@@ -1,0 +1,21 @@
+<h1>Title</h1>
+
+<table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th width="200px">Action</th>
+      </tr>
+      <tr *ngFor="let list of lists">
+        <td>{{ list.id }}</td>
+        <td>{{ list.title }}</td>
+        <td>{{ list.title }}</td>
+        <td>
+          <!-- Lägg till list route -->
+            <a href="#" [routerLink]="['/list/', list.id, 'view']" class="btn btn-info">View</a>
+            <a href="#" [routerLink]="['/list/', list.id, 'edit']" class="btn btn-primary">Edit</a>
+       <button type="button" (click)="deleteRecipe(list.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
