@@ -1,81 +1,121 @@
 <a [routerLink]="['/recipe']" class="float-start">
-    <h2 id="back-title-recipe">
-      <i class="fa fa-arrow-left"></i>
+  <h2 id="back-title-recipe">
+    <i class="fa fa-arrow-left"></i>
   </h2>
 </a>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ti-icons@0.1.2/css/themify-icons.css">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
-                <div class="card border-0 shadow">
-                    <img src="{{ recipe.image }}" alt="...">
-                    <div class="card-body p-1-9 p-xl-5">
-                        <div class="mb-4">
-                            <h3 class="h4 mb-0">{{recipe.title}}</h3>
-                        </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3"><i class="display-25 me-3 text-secondary"></i>🍽️ &zwnj; {{ recipe.dishTypes }}</li>
-                            <li class="mb-3"><i class="display-25 me-3 text-secondary"></i>⏲️ &zwnj; <strong>{{ recipe.readyInMinutes }} </strong> min.</li>
-                            <button class="btn btn-info w-100 mt-3">+ Favorite</button>
-                        </ul>
-                    </div>
-                </div>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/ti-icons@0.1.2/css/themify-icons.css"
+/>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
+      <div class="card border-0 shadow">
+        <img src="{{recipe.image}}" alt="The prepared meal" />
+        <div class="card-body p-1-9 p-xl-5">
+          <div class="mb-4">
+            <h3 class="h4 mb-0">{{ recipe.title }}</h3>
+          </div>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-3">
+              <i class="display-25 me-3 text-secondary"></i>🍽️ &zwnj;
+              {{ recipe.dishTypes }}
+            </li>
+            <li class="mb-3">
+              <i class="display-25 me-3 text-secondary"></i>⏲️ &zwnj;
+              <strong>{{ recipe.readyInMinutes }} </strong> min.
+            </li>
+
+            <div class="dropdown" data-bs-toggle="dropdown">
+              <button
+                class="btn btn-info w-100 mt-3 dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Add to list
+              </button>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+                *ngFor="let list of lists">
+                <a class="dropdown-item" (click)="addRecipeToList()">{{list.title}}</a>
+              </div>
             </div>
-            <div class="col-lg-8">
-                <div class="ps-lg-1-6 ps-xl-5">
-                    <div class="mb-2 col-sm-8 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="h1 mb-0 text-primary">Ingredients</h2>
-                        </div>
-                        <p class="text-start">List of ingredients</p>
-                            <div class="text-start" *ngFor="let extendedIngredient of extendedIngredients">
-                                <ul class="mb-0">
-                                    <li><small>{{ extendedIngredient.original }}</small></li>
-                                </ul> 
-                            </div>
-                        <br>
-                    </div>
-                    <div class="mb-5 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="mb-0 text-primary">Recipe</h2>
-                            <div *ngFor="let step of steps">
-                                <p><strong>{{ step.number }}.</strong> {{ step.step }} </p>
-                            </div>
-                        </div>
-                        <div class="row mt-n4">
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Servings</h3>
-                                        <p class="h3 mb-0">{{ recipe.servings }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-pencil-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Diets</h3>
-                                        <p class="h3 mb-0">{{recipe.diets}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Price per serving</h3>
-                                        <p class="h3 mb-0">{{recipe.pricePerServing}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+          </ul>
         </div>
+      </div>
     </div>
-<!-- <h5 class="card-title">recipe Id is: {{recipe_id}}</h5> -->
+    <div class="col-lg-8">
+      <div class="ps-lg-1-6 ps-xl-5">
+        <div class="mb-2 col-sm-8 wow fadeIn">
+          <div class="text-start mb-1-6 wow fadeIn">
+            <h2 class="h1 mb-0 text-primary">Ingredients</h2>
+          </div>
+          <p class="text-start">List of ingredients</p>
+          <div
+            class="text-start"
+            *ngFor="let extendedIngredient of extendedIngredients"
+          >
+            <ul class="mb-0">
+              <li>
+                <small>{{ extendedIngredient.original }}</small>
+              </li>
+            </ul>
+          </div>
+          <br />
+        </div>
+        <div class="mb-5 wow fadeIn">
+          <div class="text-start mb-1-6 wow fadeIn">
+            <h2 class="mb-0 text-primary">Recipe</h2>
+            <div *ngFor="let step of steps">
+              <p>
+                <strong>{{ step.number }}.</strong> {{ step.step }}
+              </p>
+            </div>
+          </div>
+          <div class="row mt-n4">
+            <div class="col-sm-6 col-xl-4 mt-4">
+              <div class="card text-center border-0 rounded-3">
+                <div class="card-body">
+                  <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
+                  <h3 class="h5 mb-3">Servings</h3>
+                  <p class="h3 mb-0">{{ recipe.servings }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-4 mt-4">
+              <div class="card text-center border-0 rounded-3">
+                <div class="card-body">
+                  <i class="ti-pencil-alt icon-box medium rounded-3 mb-4"></i>
+                  <h3 class="h5 mb-3">Diets</h3>
+                  <p class="h3 mb-0">{{ recipe.diets }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-4 mt-4">
+              <div class="card text-center border-0 rounded-3">
+                <div class="card-body">
+                  <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
+                  <h3 class="h5 mb-3">Price per serving</h3>
+                  <p class="h3 mb-0">{{ recipe.pricePerServing }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h5 class="card-title">recipe Id is: {{ recipe.id }}</h5>
