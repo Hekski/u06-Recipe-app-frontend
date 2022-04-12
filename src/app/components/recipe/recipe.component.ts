@@ -1,5 +1,4 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Recipe } from 'src/app/interface/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -19,6 +18,7 @@ export class RecipeComponent implements OnInit {
   category!: string;
   data: any;
   filter: string[] = [];
+  link: any;
 
   constructor(public recipeService: RecipeService) {}
 
@@ -30,25 +30,24 @@ export class RecipeComponent implements OnInit {
   }
 
   getPreference(event: any) {
-    if (this.filter.includes(event.target.name)){
+    if (this.filter.includes(event.target.name)) {
       this.filter = this.filter.filter((item) => {
-        return item != event.target.name
-      })
-    }
-    else {
+        return item != event.target.name;
+      });
+    } else {
       this.filter.push(event.target.name);
     }
-      console.log(this.filter);
+    console.log(this.filter);
   }
-  
+
   getCategory(event: any) {
-    this.recipeService.getTypes(event.target.name, this.filter)
+    this.recipeService
+      .getTypes(event.target.name, this.filter)
       .subscribe((data: Recipe[]) => {
         this.recipes = Object(data).results;
         console.log(this.recipes);
       });
-    }
-
+  }
 
   /* deletePost(id: number) {
     this.recipeService.delete(id).subscribe((res) => {

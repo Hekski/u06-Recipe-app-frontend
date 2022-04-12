@@ -1,58 +1,154 @@
+
+
+
+
+<div class="d-flex container-fluid" lc-helper="background" style="height:50vh;background:url(../assets/images/header.jpg)  center / cover no-repeat;">
+</div>
+<div class="container shadow-lg p-5 bg-light" style="margin-top:-100px">
+	<div class="row">
+		<div class="col-md-4 text-center align-self-center">
+			<div class="lc-block border-end border-2 ">
+				<div editable="rich">
+					<p class="display-4 text-secondary">Recipes</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8 ">
+			<div class="lc-block ">
+				<div editable="rich">
+					<p class="display-4">Think different and create a wonderful world of taste.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 offset-md-1">
+			<div class="lc-block mt-5">
+				<div editable="rich">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="container text-center">
 <div class="container">
-  <h1 class="text-start mb-5">Externt API <small>{{category}}</small></h1>
-  
+
   <div>
-    <ul class="nav nav-pills mb-1 mt-1">
+    <ul class="nav nav-pills">
       <li class="nav-item mb-2">
-        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" value="breakfast" (click)="getCategory($event)" name="breakfast"> Breakfast</button>
+        <button
+          class="nav-link me-3 bg-warning text-white"
+          style="border-radius: 23px"
+          value="breakfast"
+          (click)="getCategory($event)"
+          name="breakfast"
+        >
+          Breakfast
+        </button>
       </li>
       <li class="nav-item mb-2">
-        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" value="main" (click)="getCategory($event)" name="main">Main Dishes</button>
+        <button
+          class="nav-link me-3 bg-warning text-white"
+          style="border-radius: 23px"
+          value="main"
+          (click)="getCategory($event)"
+          name="main"
+        >
+          Main Dishes
+        </button>
       </li>
       <li class="nav-item mb-2">
-        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="drink">Drinks</button>
+        <button
+          class="nav-link me-3 bg-warning text-white"
+          style="border-radius: 23px"
+          (click)="getCategory($event)"
+          name="drink"
+        >
+          Drinks
+        </button>
       </li>
       <li class="nav-item mb-2">
-        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="appetizer">Appetizers</button>
+        <button
+          class="nav-link me-3 bg-warning text-white"
+          style="border-radius: 23px"
+          (click)="getCategory($event)"
+          name="appetizer"
+        >
+          Appetizers
+        </button>
       </li>
       <li class="nav-item mb-2">
-        <button class="nav-link me-3 bg-primary text-white" style="border-radius:23px" (click)="getCategory($event)" name="dessert">Desserts</button>
+        <button
+          class="nav-link me-3 bg-warning text-white"
+          style="border-radius: 23px"
+          (click)="getCategory($event)"
+          name="dessert"
+        >
+          Desserts
+        </button>
       </li>
     </ul>
   </div>
   <div class="d-flex justify-content-between">
     <ul class="nav nav-pills mb-3 mt-1 ms-3">
       <div class="form-check ms-3">
-        <input class="form-check-input" type="checkbox" name="glutenFree" (change)="getPreference($event)" id="flexCheckDefault">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="glutenFree"
+          (change)="getPreference($event)"
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
           Gluten Free
         </label>
       </div>
       <div class="form-check ms-3">
-        <input class="form-check-input" type="checkbox" name="vegetarian" (change)="getPreference($event)" id="flexCheckDefault">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="vegetarian"
+          (change)="getPreference($event)"
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
           Vegetarian
         </label>
       </div>
       <div class="form-check ms-3">
-        <input class="form-check-input" type="checkbox" name="dairyFree" (change)="getPreference($event)" id="flexCheckDefault">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="dairyFree"
+          (change)="getPreference($event)"
+          id="flexCheckDefault"
+        />
         <label class="form-check-label" for="flexCheckDefault">
           Dairy Free
         </label>
       </div>
     </ul>
-    
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Antal
+
+    <div class="dropdown" data-bs-toggle="dropdown">
+      <button
+        class="btn btn-outline-secondary dropdown-toggle btn-sm"
+        type="button"
+        id="dropdownMenuButton"
+        data-bs-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Hits
       </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">10</a>
-          <a class="dropdown-item" href="#">20</a>
-          <a class="dropdown-item" href="#">30</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="hits">
+        <!-- <a class="dropdown-item" (click)="getSelectedDropdown('10')">10</a>
+          <a class="dropdown-item" (click)="getSelectedDropdown('20')">20</a>
+          <a class="dropdown-item" (click)="getSelectedDropdown('30')">30</a> -->
       </div>
     </div>
   </div>
+</div>
 
   <div class="row">
     <div class="col-sm-4" *ngFor="let recipe of recipes">
@@ -63,15 +159,18 @@
           alt="Card image cap"
         />
         <div class="card-body">
-          <h5 class="card-title"><small>{{ recipe.title }}</small></h5>
+          <h5 class="card-title">
+            <small>{{ recipe.title }}</small>
+          </h5>
           <p class="card-text"></p>
           <a
             [routerLink]="['/recipe-detail/', recipe.id]"
-            class="btn btn-danger"
+            class="btn btn-dark"
             >Check recipe</a
           >
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
