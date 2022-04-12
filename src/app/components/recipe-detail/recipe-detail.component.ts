@@ -17,6 +17,10 @@ export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   steps!: any;
   lists: List[] = [];
+  user_list_id: any;
+  list_id: number;
+  recipe_id: any;
+  message: string;
 
   constructor(
     private recipeService: RecipeService,
@@ -26,10 +30,11 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
 
     this.listService.getAll().subscribe((data: List[]) => {
       this.lists = Object(data);
-      console.log("Listor " + this.lists);
+      console.log(this.recipe);
     });
 
     this.recipeService.getOneRecipe(this.id).subscribe((data: Recipe) => {
@@ -41,12 +46,22 @@ export class RecipeDetailComponent implements OnInit {
     });
   }
 
-
-  addRecipeToList(): void {
-    this.listService.addToList(
-      this.recipe.id,
-      this.recipe.title,
-      this.recipe.image
-    );
+  addRecipeToList(
+    title: string,
+    image: string,
+    recipe_id: number,
+    list_id: number
+  ): void {
+    const recipeObject = {
+      recipe: title,
+      image: image,
+      recipe_id: recipe_id,
+      list_id: list_id,
+    };
+    this.recipeService.addToList(recipeObject).subscribe((data: Recipe) => {
+      this.recipe = Object(data);
+      alert(data);
+      this.ngOnInit();
+    });
   }
 }

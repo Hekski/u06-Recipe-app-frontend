@@ -1,3 +1,5 @@
+<div class="container text-center mt-5">
+
 <a [routerLink]="['/recipe']" class="float-start">
   <h2 id="back-title-recipe">
     <i class="fa fa-arrow-left"></i>
@@ -29,28 +31,29 @@
               {{ recipe.dishTypes }}
             </li>
             <li class="mb-3">
-              <i class="display-25 me-3 text-secondary"></i>⏲️ &zwnj;
-              <strong>{{ recipe.readyInMinutes }} </strong> min.
+              <i class="display-25 mb-3 text-secondary"></i>⏲️ &zwnj;
+              <strong>{{ recipe.readyInMinutes }} </strong> min
             </li>
-
-            <div class="dropdown" data-bs-toggle="dropdown">
-              <button
-                class="btn btn-info w-100 mt-3 dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Add to list
-              </button>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-                *ngFor="let list of lists">
-                <a class="dropdown-item" (click)="addRecipeToList()">{{list.title}}</a>
+            
+            <div class="bg-light rounded pt-3 pb-3">
+              <h6 class="mt-1"><strong>Add to list</strong></h6>
+              <div class="dropdown" data-bs-toggle="dropdown">
+                <button
+                  class="btn btn-info w-100 mt-3 dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  class="dropdown-menu">
+                </button>
+                  <div
+                    aria-labelledby="dropdownMenuButton"
+                    *ngFor="let list of lists">
+                    <a class="dropdown-item" (click)="addRecipeToList( recipe.title, recipe.image, recipe.id, list.id)" style="cursor: pointer;">{{list.title}}</a>
+                  </div>
               </div>
-            </div>
+              </div>
 
           </ul>
         </div>
@@ -118,4 +121,4 @@
     </div>
   </div>
 </div>
-<h5 class="card-title">recipe Id is: {{ recipe.id }}</h5>
+</div>

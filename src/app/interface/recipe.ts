@@ -1,6 +1,8 @@
 export interface Recipe {
   id: number;
+  user_list_id: number;
   title: string;
+  recipe: string;
   image: string;
   type: string;
   readyInMinutes: number;
