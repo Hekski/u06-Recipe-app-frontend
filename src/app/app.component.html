@@ -1,18 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
   <div class="container">
-    <a class="navbar-brand" href="/recipe"> {{title}}</a>
-
+    <a class="navbar-brand " href="/recipe"> {{ title }}</a>
     <ul class="nav nav-pills">
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/about"
-          >About</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/recipe"
-          >Recipes</a
-        >
-      </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a class="nav-link" routerLinkActive="active" routerLink="/list"
           >User</a
@@ -20,16 +9,16 @@
       </li>
 
       <li class="nav-item ms-4" *ngIf="!isLoggedIn; else loggedOut">
-        <a class="nav-link" routerLinkActive="active" routerLink="/login"
-          >Login</a
-        >
+        <button class="btn btn-warning text-black" routerLinkActive="active" routerLink="/login">
+          Login
+        </button>
       </li>
       <ng-template #loggedOut>
         <li class="nav-item ms-4">
           <a
             class="nav-link"
             routerLinkActive="active"
-            routerLink="/about"
+            routerLink="/recipe"
             (click)="logout()"
             >Logout</a
           >
@@ -38,6 +27,5 @@
     </ul>
   </div>
 </nav>
-<div class="container text-center">
-  <router-outlet></router-outlet>
-</div>
+
+<router-outlet></router-outlet>

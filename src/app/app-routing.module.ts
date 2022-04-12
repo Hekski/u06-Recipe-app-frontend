@@ -12,7 +12,7 @@ import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/recipe', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'list', component: ListComponent },
