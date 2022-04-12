@@ -1,4 +1,4 @@
-# Frontend
+# U06 Recipe App - Frontend
 
 School Assignment @ Chas Academy, spring 2022. This is the front end part of it. The assignment was to create a rudamentary recipe app that fetches recipes from an external API and that is also connected to a Laravel backend API that stores recipes in user lists on a database.
 
