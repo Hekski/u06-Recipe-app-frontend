@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { List } from 'src/app/interface/list';
+import { Recipe } from 'src/app/interface/recipe';
 import { ListService } from 'src/app/services/list.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-list-detail',
@@ -9,20 +12,34 @@ import { ListService } from 'src/app/services/list.service';
 })
 export class ListDetailComponent implements OnInit {
   lists: List[] = [];
+  recipes: Recipe[] = [];
+  public id: number;
+  recipesSpoon: any;
 
-  constructor(public listService: ListService) {}
+  constructor(
+    public listService: ListService,
+    private recipeService: RecipeService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.listService.getAll().subscribe((data: List[]) => {
+    this.id = +this.route.snapshot.paramMap.get('id');
+
+    /* this.listService.subscribe((data:List[]) => {
       this.lists = Object(data);
-      console.log(this.lists);
+    }) */
+
+    this.recipeService.getAllFromAPI(this.id).subscribe((data: Recipe[]) => {
+      this.recipes = Object(data);
     });
+    console.log("HEJ" + this.recipes);
   }
 
   deleteRecipe(id: number) {
-    this.listService.delete(id).subscribe((res) => {
+    this.recipeService.deleteOneRecipe(id).subscribe((res) => {
       this.lists = this.lists.filter((item) => item.id !== id);
-      console.log('List deleted successfully!');
+      console.log('Recipe deleted successfully! ' + res);
+      this.ngOnInit();      
     });
   }
 }

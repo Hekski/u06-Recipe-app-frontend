@@ -1,21 +1,25 @@
-<h1>Title</h1>
+<a [routerLink]="['/list']" class="float-start">
+    <h2 id="back-title-recipe">
+      <i class="fa fa-arrow-left"></i>
+  </h2>
+</a>
 
-<table class="table table-bordered">
+<!-- <h1>{{ lists.id }}</h1>
+ -->
+<table class="table table-bordered text-start">
       <tr>
-        <th>ID</th>
-        <th>Name</th>
         <th>Image</th>
+        <th>Name</th>
         <th width="200px">Action</th>
       </tr>
-      <tr *ngFor="let list of lists">
-        <td>{{ list.id }}</td>
-        <td>{{ list.title }}</td>
-        <td>{{ list.title }}</td>
+      <tr *ngFor="let recipe of recipes">
+        <td><img src="{{ recipe.image }}" class="img-thumbnail rounded float-start" style="max-height: 200px;"/></td>
+        <td>{{ recipe.recipe }}</td>
         <td>
-          <!-- Lägg till list route -->
-            <a href="#" [routerLink]="['/list/', list.id, 'view']" class="btn btn-info">View</a>
-            <a href="#" [routerLink]="['/list/', list.id, 'edit']" class="btn btn-primary">Edit</a>
-       <button type="button" (click)="deleteRecipe(list.id)" class="btn btn-danger">Delete</button>
+          <div>
+          <a href="#" [routerLink]="['/recipe-detail/', recipe.id]" class="btn btn-info me-1">View</a>
+        <button type="button" (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete</button>
+          </div>  
         </td>
       </tr>
     </table>
