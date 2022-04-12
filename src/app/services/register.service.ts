@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from '../interface/user';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +15,6 @@ export class RegisterService {
 
   register(formData: object): Observable<any> {
     return this.http.post(`${this.LaravelApiUrl}`, formData);
+    
   }
 }

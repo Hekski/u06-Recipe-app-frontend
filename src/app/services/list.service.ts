@@ -16,6 +16,7 @@ export class ListService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     }),
   };
 
@@ -23,27 +24,30 @@ export class ListService {
 
   getAll(): Observable<List[]> {
     return this.http
-      .get<List[]>(this.apiURL + '/userlist/' + localStorage.getItem('id'))
-      .pipe(catchError(this.errorHandler));
-  }
-
-  create(data: object): Observable<List> {
-    let getId = +localStorage.getItem('id');
-    return this.http
-      .post<List>(
-        this.apiURL + '/create-userlist/' + getId,
-        JSON.stringify(data),
+      .get<List[]>(
+        this.apiURL + '/userlist/' + localStorage.getItem('id'),
         this.httpOptions
       )
       .pipe(catchError(this.errorHandler));
   }
 
+  create(data: object): Observable<List> {
+    return this.http
+      .post<List>(
+        this.apiURL + '/create-userlist/' + localStorage.getItem('id'),
+        JSON.stringify(data),
+        this.httpOptions
+      )
+      .pipe(catchError(this.errorHandler));
+  }
+  // not used
   find(id: string | number): Observable<List> {
     return this.http
       .get<List>(this.apiURL + '/recipe/' + id)
       .pipe(catchError(this.errorHandler));
   }
 
+  // not used
   update(id: string | number, recipe: any): Observable<List> {
     return this.http
       .put<List>(
@@ -54,18 +58,9 @@ export class ListService {
       .pipe(catchError(this.errorHandler));
   }
 
-  /* delete(id: number) {
-    return this.http
-      .delete<List>(this.apiURL + '/recipe/' + id, this.httpOptions)
-      .pipe(catchError(this.errorHandler));
-  } */
-
   delete(id: number) {
     return this.http
-      .delete<List>(
-        this.apiURL + '/delete-userlist/' + id,
-        this.httpOptions
-      )
+      .delete<List>(this.apiURL + '/delete-userlist/' + id, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 
