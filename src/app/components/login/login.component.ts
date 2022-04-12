@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router
   ) {}
+
   email: string = '';
   password: string = '';
   alert: string = '';
@@ -38,8 +39,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', result.token);
       localStorage.setItem('id', result.id);
       localStorage.setItem('name', result.name);
+      this.ngOnInit();
       alert(result.message);
-      this.router.navigate(['/list']);
+      this.router.navigate(['/recipe']);
     });
   }
 }

@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
           <h4 class="card-title mb-4 mt-1">Log in</h4>
           <a
-            class="btn btn-outline-primary h-100"
+            class="btn btn-outline-dark h-100"
             routerLinkActive="active"
             routerLink="/register"
             >Register</a
@@ -16,26 +16,22 @@
             <label>Your email</label>
             <input formControlName="email" class="form-control" type="email" />
           </div>
-          <!-- form-group// -->
           <div class="form-group text-start mt-3">
             <label>Your password</label>
             <input
               formControlName="password"
               class="form-control"
               type="password"
-              placeholder=""
+              value="default value"
             />
           </div>
-          <!-- form-group// -->
           <div class="form-group text-start">
             <div class="checkbox">
               <label> <input type="checkbox" /> Save password </label>
             </div>
-            <!-- checkbox .// -->
           </div>
-          <!-- form-group// -->
           <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary btn-block w-100">
+            <button type="submit" class="btn btn-dark btn-block w-100">
               Login
             </button>
             

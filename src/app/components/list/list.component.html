@@ -15,12 +15,10 @@
 
   <label class="mb-2">Your saved lists</label>
   <div class="list-items d-flex flex-row align-items-center" *ngFor="let list of lists">
-
     <button (click)="deleteList(list.id)" class="btn btn-danger mb-2 me-2"
       >Delete List</button
     >
-    <span><h5><a [routerLink]="['/list-detail/', list.id]">{{ list.title }} </a></h5></span>
-    <p></p>
+    <span><h5><a [routerLink]="['/list-detail/', list.id]" >{{ list.title }} </a></h5></span>
   </div>
 
 </div>
