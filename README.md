@@ -7,6 +7,8 @@ Project needs refinements:
   - Messeges and alerts from backend needs work
   - Deployment
   - Numbers button on frontpage is not working
+  - This readMe and documentation
+  - Probably other stuff...
 
 ## Getting started
 
