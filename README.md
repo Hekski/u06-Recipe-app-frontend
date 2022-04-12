@@ -8,6 +8,8 @@ Project needs refinements:
   - Deployment
   - Numbers button on frontpage is not working
   - This readMe and documentation
+  - Recipies can now be stored multiple times in the same list
+  - Changing lists
   - Probably other stuff...
 
 ## Getting started
@@ -22,7 +24,7 @@ Under construction
 
 I'm using [Spoonacular's API](https://spoonacular.com/food-api/).
 
-## Requirements
+## Other fullfilled requirements
 
 - [x] Be able to get a list of recipe suggestions
 - [x] Be able to filter the suggestions of recipes by dish type and allergens/preferences:
