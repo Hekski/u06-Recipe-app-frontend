@@ -60,7 +60,7 @@ export class RecipeDetailComponent implements OnInit {
     };
     this.recipeService.addToList(recipeObject).subscribe((data: Recipe) => {
       this.recipe = Object(data);
-      alert(data);
+      alert("Recipe added");
       this.ngOnInit();
     });
   }

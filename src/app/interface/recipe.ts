@@ -1,6 +1,7 @@
 export interface Recipe {
   id: number;
   user_list_id: number;
+  recipe_id: number;
   title: string;
   recipe: string;
   image: string;
