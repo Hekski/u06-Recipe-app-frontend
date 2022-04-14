@@ -40,12 +40,7 @@ export class ListService {
       )
       .pipe(catchError(this.errorHandler));
   }
-  // not used
-  find(id: string | number): Observable<List> {
-    return this.http
-      .get<List>(this.apiURL + '/recipe/' + id)
-      .pipe(catchError(this.errorHandler));
-  }
+  
 
   // not used
   update(id: string | number, recipe: any): Observable<List> {
