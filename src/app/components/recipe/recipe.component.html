@@ -142,9 +142,9 @@
         Hits
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="hits">
-        <!-- <a class="dropdown-item" (click)="getSelectedDropdown('10')">10</a>
-          <a class="dropdown-item" (click)="getSelectedDropdown('20')">20</a>
-          <a class="dropdown-item" (click)="getSelectedDropdown('30')">30</a> -->
+          <a class="dropdown-item" (change)="getSelectedDropdown($event)" name="10">10</a>
+          <a class="dropdown-item" (change)="getSelectedDropdown($event)" name="20">20</a>
+          <a class="dropdown-item" (change)="getSelectedDropdown($event)" name="30">30</a>
       </div>
     </div>
   </div>

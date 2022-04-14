@@ -3,8 +3,6 @@ import { Recipe } from 'src/app/interface/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Injectable({
-  // export class recipeService {
-  // category!: string;
   providedIn: 'root',
 })
 @Component({
@@ -18,7 +16,6 @@ export class RecipeComponent implements OnInit {
   category!: string;
   data: any;
   filter: string[] = [];
-  link: any;
 
   constructor(public recipeService: RecipeService) {}
 
@@ -49,10 +46,7 @@ export class RecipeComponent implements OnInit {
       });
   }
 
-  /* deletePost(id: number) {
-    this.recipeService.delete(id).subscribe((res) => {
-      this.recipes = this.recipes.filter((item) => item.id !== id);
-      console.log('Post deleted successfully!');
-    });
-  } */
+  getSelectedDropdown(event: any) {
+    this.recipeService.selectedDropdown;
+  }
 }
