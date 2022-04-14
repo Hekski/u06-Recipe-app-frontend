@@ -13,8 +13,9 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class ListDetailComponent implements OnInit {
   lists: List[] = [];
   recipes: Recipe[] = [];
-  public id: number;
-  recipesSpoon: any;
+  id: number;
+  recipe: Recipe;
+  listName: any;
 
   constructor(
     public listService: ListService,
@@ -25,21 +26,24 @@ export class ListDetailComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
 
-    /* this.listService.subscribe((data:List[]) => {
+    this.listService.getAll().subscribe((data: List[]) => {
       this.lists = Object(data);
-    }) */
+      console.log(this.lists);
+      this.lists = this.lists.filter((item) => item.id == this.id);
+      const listName = this.lists;
+      console.log(listName);
+    });
 
     this.recipeService.getAllFromAPI(this.id).subscribe((data: Recipe[]) => {
       this.recipes = Object(data);
     });
-    console.log("HEJ" + this.recipes);
   }
 
   deleteRecipe(id: number) {
     this.recipeService.deleteOneRecipe(id).subscribe((res) => {
       this.lists = this.lists.filter((item) => item.id !== id);
       console.log('Recipe deleted successfully! ' + res);
-      this.ngOnInit();      
+      this.ngOnInit();
     });
   }
 }

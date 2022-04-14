@@ -1,10 +1,12 @@
+<div class="container text-center mt-5">
+
 <a [routerLink]="['/list']" class="float-start">
     <h2 id="back-title-recipe">
-      <i class="fa fa-arrow-left"></i>
+    <i class="fa fa-arrow-left" style="color: black"></i>
   </h2>
 </a>
 
-<!-- <h1>{{ lists.id }}</h1>
+<!-- <h1 class="display-4">{{ listName.id }}</h1>
  -->
 <table class="table table-bordered text-start">
       <tr>
@@ -17,9 +19,11 @@
         <td>{{ recipe.recipe }}</td>
         <td>
           <div>
-          <a href="#" [routerLink]="['/recipe-detail/', recipe.id]" class="btn btn-info me-1">View</a>
+          <a href="#" [routerLink]="['/recipe-detail/', recipe.recipe_id]" class="btn btn-info me-1">View</a>
         <button type="button" (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete</button>
           </div>  
         </td>
       </tr>
     </table>
+
+</div>
