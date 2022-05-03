@@ -22,7 +22,6 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getAll().subscribe((data: Recipe[]) => {
       this.recipes = Object(data).results;
-      console.log(this.recipes);
     });
   }
 
@@ -34,7 +33,6 @@ export class RecipeComponent implements OnInit {
     } else {
       this.filter.push(event.target.name);
     }
-    console.log(this.filter);
   }
 
   getCategory(event: any) {
@@ -42,11 +40,16 @@ export class RecipeComponent implements OnInit {
       .getTypes(event.target.name, this.filter)
       .subscribe((data: Recipe[]) => {
         this.recipes = Object(data).results;
-        console.log(this.recipes);
       });
   }
 
   getSelectedDropdown(event: any) {
-    this.recipeService.selectedDropdown;
+    this.recipeService
+      .selectedDropdown(event.target.name)
+      .subscribe((data: Recipe[]) => {
+        this.recipes = Object(data).results;
+      });
+      console.log(this.recipes);
+    this.ngOnInit();
   }
 }

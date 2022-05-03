@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
 
@@ -16,7 +15,6 @@ export class AppComponent {
   }
   ngOnInit() {
     this.isLoggedIn = this.loginService.isUserLoggedIn();
-    console.log('hej' + this.isLoggedIn);
   }
   logout(): void {
     localStorage.removeItem('token');

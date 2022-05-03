@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyzedInstruction, ExtendedIngredient, Recipe, } from 'src/app/interface/recipe';
+import {
+  AnalyzedInstruction,
+  ExtendedIngredient,
+  Recipe,
+} from 'src/app/interface/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { ListService } from 'src/app/services/list.service';
 import { ActivatedRoute } from '@angular/router';
@@ -30,11 +34,9 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
 
     this.listService.getAll().subscribe((data: List[]) => {
       this.lists = Object(data);
-      console.log(this.recipe);
     });
 
     this.recipeService.getOneRecipe(this.id).subscribe((data: Recipe) => {
@@ -60,7 +62,7 @@ export class RecipeDetailComponent implements OnInit {
     };
     this.recipeService.addToList(recipeObject).subscribe((data: Recipe) => {
       this.recipe = Object(data);
-      alert("Recipe added");
+      alert('Recipe added');
       this.ngOnInit();
     });
   }

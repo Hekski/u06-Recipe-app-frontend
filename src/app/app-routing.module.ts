@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
@@ -14,7 +13,6 @@ import { ListDetailComponent } from './components/list-detail/list-detail.compon
 const routes: Routes = [
   { path: '', redirectTo: '/recipe', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
   { path: 'list', component: ListComponent },
   { path: 'list-detail/:id', component: ListDetailComponent },
   { path: 'recipe', component: RecipeComponent },

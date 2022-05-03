@@ -17,8 +17,8 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {
     this.apiURL = 'https://api.spoonacular.com/recipes/';
-    this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
-    // this.apiKey = environment.API_KEY;
+    // this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
+    this.apiKey = environment.API_KEY;
   }
 
   httpOptions = {
@@ -28,15 +28,14 @@ export class RecipeService {
     }),
   };
 
-  deafultParams = new HttpParams()
-    .append('number', '10')
-    .append('apiKey', this.apiKey);
+  deafultParams = new HttpParams().append('number', '20');
 
   getAll(): Observable<Recipe[]> {
     return this.http
-      .get<Recipe[]>(this.apiURL + 'complexSearch', {
-        params: this.deafultParams,
-      })
+      .get<Recipe[]>(
+        this.apiURL + 'complexSearch?' + 'apiKey=' + this.apiKey,
+        {}
+      )
       .pipe(catchError(this.errorHandler));
   }
 
@@ -74,12 +73,15 @@ export class RecipeService {
       filterParams = filterParams.append('intolerances', 'Dairy');
     }
 
-    return this.http.get<Recipe[]>(this.apiURL + 'complexSearch', {
-      params: filterParams.append('type', `${type}`),
-    });
+    return this.http.get<Recipe[]>(
+      this.apiURL + 'complexSearch?' + 'apiKey=' + this.apiKey,
+      {
+        params: filterParams.append('type', `${type}`),
+      }
+    );
   }
 
-  selectedDropdown(type: any, number: string) {
+  selectedDropdown(number: any) {
     let numberParams = this.deafultParams;
 
     if (number.includes('10')) {
@@ -92,21 +94,27 @@ export class RecipeService {
       numberParams = numberParams.append('number', '30');
     }
 
-    return this.http.get<Recipe[]>(this.apiURL + 'complexSearch', {
-      params: numberParams.append('type', `${type}`),
+    return this.http.get<Recipe[]>(
+      this.apiURL + 'complexSearch', {
+      params: numberParams.append('number', `${number}`),
     });
   }
 
   getOneRecipe(id: number | string): Observable<Recipe> {
-    return this.http.get<Recipe>(this.apiURL + id + '/information', {
-      params: new HttpParams().append('apiKey', this.apiKey),
-    });
+    return this.http.get<Recipe>(
+      this.apiURL + id + '/information?' + 'apiKey=' + this.apiKey,
+      {}
+    );
   }
 
   deleteOneRecipe(id: number) {
     return this.http
       .delete<Recipe>(
-        'http://localhost:8000/api' + '/delete-recipe/' + id,
+        'http://localhost:8000/api' +
+          '/delete-recipe/' +
+          id +
+          'apiKey=' +
+          this.apiKey,
         this.httpOptions
       )
       .pipe(catchError(this.errorHandler));

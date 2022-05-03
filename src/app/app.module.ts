@@ -1,6 +1,5 @@
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
 import { NoPageFoundComponent } from './components/no-page-found/no-page-found.component';
 import { ListComponent } from './components/list/list.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
@@ -20,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     NoPageFoundComponent,
     ListComponent,
     RecipeComponent,
