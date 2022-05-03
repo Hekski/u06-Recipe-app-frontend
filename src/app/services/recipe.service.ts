@@ -4,23 +4,22 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Recipe } from '../interface/recipe';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
   private apiURL: string;
-  private apiKey: string;
+  private apiKey!: string;
   category!: string;
   filterValue: string;
-  
 
   constructor(private http: HttpClient) {
     this.apiURL = 'https://api.spoonacular.com/recipes/';
     this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
-/*     this.apiKey = environment.API_KEY;
- */  }
+    // this.apiKey = environment.API_KEY;
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -31,8 +30,8 @@ export class RecipeService {
 
   deafultParams = new HttpParams()
     .append('number', '10')
-    .append('apiKey', 'ad0ac2008bb24abe936fe73042e3e82f');
- 
+    .append('apiKey', this.apiKey);
+
   getAll(): Observable<Recipe[]> {
     return this.http
       .get<Recipe[]>(this.apiURL + 'complexSearch', {
@@ -75,12 +74,9 @@ export class RecipeService {
       filterParams = filterParams.append('intolerances', 'Dairy');
     }
 
-    return this.http.get<Recipe[]>(
-      this.apiURL + 'complexSearch',
-      {
-        params: filterParams.append('type', `${type}`),
-      }
-    );
+    return this.http.get<Recipe[]>(this.apiURL + 'complexSearch', {
+      params: filterParams.append('type', `${type}`),
+    });
   }
 
   selectedDropdown(type: any, number: string) {
@@ -96,21 +92,15 @@ export class RecipeService {
       numberParams = numberParams.append('number', '30');
     }
 
-    return this.http.get<Recipe[]>(
-      this.apiURL + 'complexSearch',
-      {
-        params: numberParams.append('type', `${type}`),
-      }
-    );
+    return this.http.get<Recipe[]>(this.apiURL + 'complexSearch', {
+      params: numberParams.append('type', `${type}`),
+    });
   }
 
   getOneRecipe(id: number | string): Observable<Recipe> {
-    return this.http.get<Recipe>(
-      this.apiURL + id + '/information',
-      {
-        params: new HttpParams().append('apiKey', this.apiKey),
-      }
-    );
+    return this.http.get<Recipe>(this.apiURL + id + '/information', {
+      params: new HttpParams().append('apiKey', this.apiKey),
+    });
   }
 
   deleteOneRecipe(id: number) {
