@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Recipe } from '../interface/recipe';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,6 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {
     this.apiURL = 'https://api.spoonacular.com/recipes/';
-    // this.apiKey = 'ad0ac2008bb24abe936fe73042e3e82f';
     this.apiKey = environment.API_KEY;
   }
 
