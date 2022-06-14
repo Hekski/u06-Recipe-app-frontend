@@ -51,8 +51,7 @@ export class RecipeService {
     return this.http
       .post<Recipe>(
         'http://u06.herokuapp.com/api/add-recipe/' +
-          recipeObject.list_id +
-          `${this.apiKey}`,
+          recipeObject.list_id,
         JSON.stringify(recipeObject),
         this.httpOptions
       )
