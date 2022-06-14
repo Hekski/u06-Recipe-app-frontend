@@ -11,7 +11,7 @@ import { List } from '../interface/list';
 })
 export class ListService {
   list: List[] = [];
-  private apiURL = 'http://localhost:8000/api';
+  private apiURL = 'http://u06.herokuapp.com/api';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -40,7 +40,6 @@ export class ListService {
       )
       .pipe(catchError(this.errorHandler));
   }
-  
 
   // not used
   update(id: string | number, recipe: any): Observable<List> {

@@ -41,7 +41,7 @@ export class RecipeService {
   getAllFromAPI(user_list_id: number): Observable<Recipe[]> {
     return this.http
       .get<Recipe[]>(
-        'http://localhost:8000/api/get-recipe/' + user_list_id,
+        'http://u06.herokuapp.com/api/get-recipe/' + user_list_id,
         this.httpOptions
       )
       .pipe(catchError(this.errorHandler));
@@ -50,7 +50,7 @@ export class RecipeService {
   addToList(recipeObject: any): Observable<Recipe> {
     return this.http
       .post<Recipe>(
-        'http://localhost:8000/api/add-recipe/' +
+        'http://u06.herokuapp.com/api/add-recipe/' +
           recipeObject.list_id +
           `${this.apiKey}`,
         JSON.stringify(recipeObject),
@@ -109,7 +109,7 @@ export class RecipeService {
   deleteOneRecipe(id: number) {
     return this.http
       .delete<Recipe>(
-        'http://localhost:8000/api' +
+        'http://u06.herokuapp.com/api' +
           '/delete-recipe/' +
           id +
           'apiKey=' +
