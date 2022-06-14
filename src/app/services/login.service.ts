@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-
   email: string = '';
   password: string = '';
-  LaravelApiUrl: string = 'http://localhost:8000/api/login';
+  // LaravelApiUrl: string = 'http://localhost:8000/api/login';
+  LaravelApiUrl: string = 'http://u06.herokuapp.com/api/login';
   constructor(private http: HttpClient) {}
 
   login(formData: object): Observable<any> {
