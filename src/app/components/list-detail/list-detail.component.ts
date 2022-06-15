@@ -36,8 +36,9 @@ export class ListDetailComponent implements OnInit {
 
     this.recipeService.getAllFromAPI(this.id).subscribe((data: Recipe[]) => {
       this.recipes = Object(data);
-      console.log(data);
     });
+
+    
   }
 
   deleteRecipe(id: number) {

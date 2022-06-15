@@ -1,20 +1,21 @@
 <div class="container text-center mt-5">
 
-<a [routerLink]="['/list']" class="float-start">
-    <h2 id="back-title-recipe">
-    <i class="fa fa-arrow-left" style="color: black"></i>
-  </h2>
-</a>
+  <a [routerLink]="['/list']" class="float-start">
+      <h2 id="back-title-recipe">
+      <i class="fa fa-arrow-left" style="color: black"></i>
+    </h2>
+  </a>
 
-<h1 *ngFor="let list of lists"> {{ list.title }}</h1>
+  <h1 *ngFor="let list of lists"> {{ list.title }}</h1>
 
-<table class="table table-bordered text-start">
+  <table class="table table-bordered text-start mt-5">
       <tr>
         <th>Image</th>
         <th>Name</th>
         <th width="200px">Action</th>
       </tr>
       <tr *ngFor="let recipe of recipes">
+        
         <td><img src="{{ recipe.image }}" class="img-thumbnail rounded float-start" style="max-height: 200px;"/></td>
         <td>{{ recipe.recipe }}</td>
         <td>
@@ -25,5 +26,7 @@
         </td>
       </tr>
     </table>
+    <span *ngFor="let list of lists"> {{ list.title.length <= 0 ? 'HEJ' : 'Inget sparat recept!'}} </span>
+    <!-- <div *ng-if="recipe.recipe_id > 0"> Inget sparat recept!</div> -->
 
 </div>

@@ -106,13 +106,8 @@ export class RecipeService {
   }
 
   deleteOneRecipe(id: number) {
-    return this.http
-      .delete<Recipe>(
-        'http://u06.herokuapp.com/api' +
-          '/delete-recipe/' +
-          id +
-          'apiKey=' +
-          this.apiKey,
+    return this.http.delete<Recipe>(
+        'http://u06.herokuapp.com/api/delete-recipe/' + id + 'apiKey=' + this.apiKey,
         this.httpOptions
       )
       .pipe(catchError(this.errorHandler));

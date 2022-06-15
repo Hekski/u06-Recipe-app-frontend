@@ -1,7 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/interface/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
-
 @Injectable({
   providedIn: 'root',
 })
