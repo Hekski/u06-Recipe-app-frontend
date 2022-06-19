@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage: '';
+  errorStatus: any;
   constructor(
     private loginService: LoginService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private _toastService: ToastService
   ) {}
 
   email: string = '';
@@ -31,17 +35,36 @@ export class LoginComponent implements OnInit {
       ]),
     });
   }
+  addInfoToast() {
+    this._toastService.error(this.errorStatus + " " + this.errorMessage);
+  }
 
-  submitForm() {
+  async submitForm() {
     const formData = this.loginForm.getRawValue();
-    this.loginService.login(formData).subscribe((result: any) => {
-      result = Object(result).data;
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('id', result.id);
-      localStorage.setItem('name', result.name);
-      this.ngOnInit();
-      alert(result.message);
-      this.router.navigate(['/recipe']);
-    });
+    return this.loginService.login(formData).subscribe(
+      async (result: any) => {
+        result = Object(result).data;
+        console.log(result)
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('id', result.id);
+        localStorage.setItem('name', result.name);
+
+        if(result) {
+          this.errorMessage = result.message;
+          await this.router.navigate(['/recipe']).then(() => {
+            window.location.reload();
+          });
+        }
+      },
+      (error) => {
+        this.errorStatus = error.status;
+        this.errorMessage = error.statusText;
+        console.log(error);
+
+        if (!error.ok) {
+          this.addInfoToast();  
+        }
+      }
+    );
   }
 }
