@@ -41,7 +41,7 @@
                 class="rounded pt-3 pb-3"
                 style="background-color: #6a598d"
               >
-                <h6 class="mt-1 text-warning"><strong>Add to list</strong></h6>
+                <a [routerLink]="['/list']" class="text-decoration-none"><h6 class="mt-1 text-warning"><strong>Add to list</strong></h6></a>
                 <div class="dropdown" data-bs-toggle="dropdown">
                   <button
                     class="btn w-100 mt-3 dropdown-toggle"
@@ -133,7 +133,7 @@
                     <i class="fas fa-dollar-sign mb-4 fa-2x text-secondary"></i>
                     <h3 class="h6 mb-1 text-secondary">Price per serving</h3>
                     <p class="h5 mb-0 text-secondary">
-                      {{ recipe.pricePerServing/10 }}
+                      {{ recipe.pricePerServing/10 }} 
                     </p>
                   </div>
                 </div>
