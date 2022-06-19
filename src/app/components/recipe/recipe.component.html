@@ -16,7 +16,7 @@
 		<div class="col-md-8 ">
 			<div class="lc-block ">
 				<div editable="rich">
-					<p class="display-4">Think different and create a wonderful world of taste.</p>
+					<p class="display-4">Create a wonderful world of taste.</p>
 				</div>
 			</div>
 		</div>
@@ -146,6 +146,7 @@
           <a class="dropdown-item" (change)="getSelectedDropdown($event)" name="20">20</a>
           <a class="dropdown-item" (change)="getSelectedDropdown($event)" name="30">30</a>
       </div>
+
     </div>
   </div>
 </div>
@@ -158,14 +159,14 @@
           src="{{ recipe.image }}"
           alt="Card image cap"
         />
-        <div class="card-body">
+        <div class="card-body" >
           <h5 class="card-title">
             <small>{{ recipe.title }}</small>
           </h5>
           <p class="card-text"></p>
           <a
             [routerLink]="['/recipe-detail/', recipe.id]"
-            class="btn btn-dark"
+            class="btn text-white" style="background-color: #6a598d;"
             >Check recipe</a
           >
         </div>
