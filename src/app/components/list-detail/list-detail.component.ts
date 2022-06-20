@@ -4,6 +4,7 @@ import { List } from 'src/app/interface/list';
 import { Recipe } from 'src/app/interface/recipe';
 import { ListService } from 'src/app/services/list.service';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-list-detail',
@@ -16,11 +17,13 @@ export class ListDetailComponent implements OnInit {
   id: number;
   recipe: Recipe;
   listName: any;
+  router: any;
 
   constructor(
     public listService: ListService,
     private recipeService: RecipeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -28,24 +31,29 @@ export class ListDetailComponent implements OnInit {
 
     this.listService.getAll().subscribe((data: List[]) => {
       this.lists = Object(data);
-      console.log(this.lists);
       this.lists = this.lists.filter((item) => item.id == this.id);
       const listName = this.lists;
-      console.log(listName);
     });
 
     this.recipeService.getAllFromAPI(this.id).subscribe((data: Recipe[]) => {
       this.recipes = Object(data);
     });
+  }
 
-    
+  addInfoToast(result: string) {
+    this._toastService.info(result);
   }
 
   deleteRecipe(id: number) {
-    this.recipeService.deleteOneRecipe(id).subscribe((res) => {
-      this.lists = this.lists.filter((item) => item.id !== id);
-      console.log('Recipe deleted successfully! ' + res);
-      this.ngOnInit();
-    });
+    if (id > 0) {
+      this.recipeService.deleteOneRecipe(id).subscribe(async (result: any) => {
+        this.lists = this.lists.filter((item) => item.id !== id);
+        this.addInfoToast(result.message);
+        this.ngOnInit();
+        this.router.navigate(['/list']);
+      });
+    } else {
+      window.location.reload();
+    }
   }
 }
