@@ -5,7 +5,6 @@
   <h1 class="display-4">Personal lists of recipes</h1>
 
   <form class="card border-0 shadow mt-4" style="background-color: #6a598d;">
-  <!-- <form class="card border-0 shadow"> -->
     <div class="card-body form-group text-start">
       <input id="listForm" class="form-control border-0 mb-2" type="text" placeholder="Name your recipe list" required/>
 
@@ -16,7 +15,9 @@
     </div>
   </form>
 
-  <label class="mb-2 mt-4 font-bold ">Your saved lists</label>
+  <label class="mb-2 mt-4 font-bold ">Your saved lists:</label><br>
+  <h4 class="mb-2 mt-4 font-weight-bolder">{{this.lists[0] ? '' : 'Hey you! This list is empty'}}</h4>
+
   
   <div class="list-items bg-info p-3 mb-1 d-flex flex-row align-items-center justify-content-between rounded " *ngFor="let list of lists">
     <a [routerLink]="['/list-detail/', list.id]" class="link-light text-decoration-none"><span><h5><i class="fa fa-list"></i> {{ list.title }} </h5></span></a>
