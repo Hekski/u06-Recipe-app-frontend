@@ -12,17 +12,17 @@ Project needs refinements:
   - Changing lists
   - Probably other stuff...
 
-## Getting started
-
-Clone repo and run:
-```
-Under construction
-
-```
-
 ## API
 
 I'm using [Spoonacular's API](https://spoonacular.com/food-api/).
+
+## Languages and tools used:
+- Angular
+- Bootstrap
+- Laravel (REST API)
+- Docker
+- Netlify (Frontend deploy)
+- Heroku (Backend deploy)
 
 ## Other fullfilled requirements
 
@@ -38,6 +38,23 @@ I'm using [Spoonacular's API](https://spoonacular.com/food-api/).
 - [x] Use an external API to retrieve recipe information which is displayed in the application
 - [x] Must work on a mobile device, ie the above goals must also be possible to perform on a mobile device
 
+| URi | Parameter | Type     | Description                |
+| :-- | :-------- | :------- | :------------------------- |
+| `/recipe` |  |  | Renders home/recipe search page |
+| `/login` |  |  | Renders login page |
+| `/register` |  |  | Renders sign up page |
+| `/recipe-detail/:id` | `id` | `string` | Renders detailed page for a specific recipe |
+| `/list` |  |  | Renders the list page for logged in users |
+| `/list-detail/:id` | `id` | `string` | Renders login page |
+
+## Getting started
+
+Clone repo and run:
+```
+Under construction
+
+```
+
 ### Design process and other notes
 
 ```
@@ -48,26 +65,3 @@ Under construction
 
 ---------------
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
