@@ -74,8 +74,6 @@ export class RegisterComponent implements OnInit {
           error.error.message.password ||
           error.error.message.confirm_password); 
         
-        console.log(error);
-        console.log(this.errorMessage);
 
         if (!error.ok) {
           this.addInfoToast();

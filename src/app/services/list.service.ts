@@ -5,13 +5,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { List } from '../interface/list';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class ListService {
   list: List[] = [];
-  private apiURL = 'http://u06.herokuapp.com/api';
+  private apiURL = 'https://u06.herokuapp.com/api';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -59,7 +58,7 @@ export class ListService {
   }
 
   errorHandler(error: any) {
-    let errorMessage = 'JÄTTEFEL';
+    let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {

@@ -48,7 +48,6 @@ export class RecipeComponent implements OnInit {
       .subscribe((data: Recipe[]) => {
         this.recipes = Object(data).results;
       });
-      console.log(this.recipes);
     this.ngOnInit();
   }
 }
