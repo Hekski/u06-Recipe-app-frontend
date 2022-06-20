@@ -26,7 +26,6 @@
         </td>
       </tr>
     </table>
-    <span *ngFor="let list of lists"> {{ list.title.length <= 0 ? 'HEJ' : 'Inget sparat recept!'}} </span>
-    <!-- <div *ng-if="recipe.recipe_id > 0"> Inget sparat recept!</div> -->
+    <h4 class="mb-2 mt-4 font-weight-bolder">{{this.id < 0 ? '' : 'Hey you! This list is empty'}}</h4>
 
 </div>
