@@ -9,6 +9,7 @@ import { ListService } from 'src/app/services/list.service';
 import { ActivatedRoute } from '@angular/router';
 import { List } from 'src/app/interface/list';
 import { LoginService } from 'src/app/services/login.service';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -27,12 +28,14 @@ export class RecipeDetailComponent implements OnInit {
   recipe_id: any;
   message: string;
   isLoggedIn!: boolean;
+  item: any;
 
   constructor(
     private recipeService: RecipeService,
     private listService: ListService,
     private route: ActivatedRoute,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +56,11 @@ export class RecipeDetailComponent implements OnInit {
     });
   }
 
+  addInfoToast(_item) {
+    this._toastService.info(this.item.message);
+    // this._toastService.info("Recipe added to '" + Object(this.lists[this.list_id]) + "'");
+  }
+
   addRecipeToList(
     title: string,
     image: string,
@@ -66,9 +74,10 @@ export class RecipeDetailComponent implements OnInit {
       list_id: list_id,
     };
     this.recipeService.addToList(recipeObject).subscribe((data: Recipe) => {
-      this.recipe = Object(data);
-      alert('Recipe added');
+      this.item = Object(data);
+      this.addInfoToast(this.item);
       this.ngOnInit();
+      return data;
     });
   }
 }

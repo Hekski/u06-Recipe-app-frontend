@@ -12,7 +12,7 @@ import { ToastService } from 'angular-toastify';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  errorMessage: '';
+  errorMessage: string;
   errorStatus: any;
   constructor(
     private loginService: LoginService,
@@ -36,33 +36,37 @@ export class LoginComponent implements OnInit {
     });
   }
   addInfoToast() {
-    this._toastService.error(this.errorStatus + " " + this.errorMessage);
+    this._toastService.error(this.errorStatus + ' ' + this.errorMessage);
+  }
+
+  reDirect() {
+    this.router.navigate(['/recipe']).then(() => {
+      window.location.reload();
+    });
   }
 
   async submitForm() {
     const formData = this.loginForm.getRawValue();
-    return this.loginService.login(formData).subscribe(
+    this.loginService.login(formData).subscribe(
       async (result: any) => {
         result = Object(result).data;
-        console.log(result)
         localStorage.setItem('token', result.token);
         localStorage.setItem('id', result.id);
         localStorage.setItem('name', result.name);
 
-        if(result) {
+        if (result) {
           this.errorMessage = result.message;
-          await this.router.navigate(['/recipe']).then(() => {
+          this.router.navigate(['/recipe']).then(() => {
             window.location.reload();
           });
         }
       },
       (error) => {
         this.errorStatus = error.status;
-        this.errorMessage = error.statusText;
-        console.log(error);
+        this.errorMessage = error.error.message;
 
         if (!error.ok) {
-          this.addInfoToast();  
+          this.addInfoToast();
         }
       }
     );
