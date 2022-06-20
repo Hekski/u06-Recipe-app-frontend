@@ -3,9 +3,6 @@
 School Assignment @ Chas Academy, spring 2022. This is the front end part of it. The assignment was to create a rudamentary recipe app that fetches recipes from an external API and that is also connected to a Laravel backend API that stores recipes in user lists on a database.
 
 Project needs refinements:
-  - View button from user lists not working
-  - Messeges and alerts from backend needs work
-  - Deployment
   - Numbers button on frontpage is not working
   - This readMe and documentation
   - Recipies can now be stored multiple times in the same list
